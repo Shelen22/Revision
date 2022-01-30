@@ -132,7 +132,9 @@ function list(tags) {
   function scrollup(){
     window.scrollTo(0, 0)
   }
-
+   
+   
+  let timerId;
   function debounce(func, delay) {
 
     if (timerId) {
@@ -142,3 +144,40 @@ function list(tags) {
       func();
     }, delay);
   }
+
+
+
+  async function main() {
+    let text = document.getElementById("inputtext").value;
+    let headersList = {
+      Authorization: "Client-ID fe6cbe383cc4efa",
+    };
+    let res = await fetch(
+      `https://api.imgur.com/3/gallery/t/${text}/top/all`,
+      {
+        method: "GET",
+        headers: headersList,
+      }
+    );
+    let { data } = await res.json();
+  
+    if(text){
+      searchitem.style.display = "block"
+    }
+    else{
+     searchitem.style.display = "none"
+    }
+    appendSearch(data.items); 
+  }
+
+
+  let searchitem = document.getElementById("searchitem");
+  function appendSearch(data) {
+    searchitem.innerHTML = null;
+    data?.forEach((data) => {
+      let p = document.createElement("p");
+      p.textContent = data.title;
+      searchitem.append(p);
+    });
+  }
+

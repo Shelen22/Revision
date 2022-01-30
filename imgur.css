@@ -196,7 +196,6 @@ body {
     fill: #01b96b;
  }
  .votedown > svg > path:hover{
-     /* border: 1px solid #01b96b; */
     fill: orangered;
  }
  .vote > div:hover{
@@ -212,6 +211,42 @@ body {
     height: 40px;
     border-radius:5px;
     background-color: #474a51;
+    cursor: pointer;
   } 
   
-
+  #searchitem {
+    z-index: 999;
+    width: 526px;
+    height: 200px;
+    overflow: auto;
+    /* position: absolute; */
+    left: 30%;
+    border-top: none;
+    position: absolute;
+    color: #b5b9c2;
+    font-size: 17px;
+    line-height: 2.24;
+    letter-spacing: .9px;
+    padding: 8px 8px 27px;
+    border-radius: 4px;
+    background-color: #3c424b;
+    box-shadow: 0 22px 40px 0 rgb(0 0 0 / 25%);
+    margin-top: 4%;
+    /* min-width: 380px; */
+    text-align: left;
+    border: 1px solid #4f4f4f;
+    display: none;
+    
+  } 
+   
+  #searchitem > p {
+     margin: 0;
+     cursor: pointer;
+     padding: 0px 10px;
+  } 
+  #searchitem > p:hover{
+      background-color: #7b808b;
+  }
+  #searchitem::-webkit-scrollbar {
+    display: none;
+  }
