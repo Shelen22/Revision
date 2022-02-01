@@ -10,6 +10,8 @@ let arr = [
   "You're breathtaking!",
 ];
 
+let pagenum = 1;
+
 document.getElementById("line1").innerHTML =
   arr[Math.floor(Math.random() * arr.length)];
 
@@ -18,7 +20,7 @@ let filters = document.getElementById("filters");
 async function Filters() {
   try {
     let res = await fetch(
-      `https://api.imgur.com/3/gallery/hot/viral/1/month?showViral=true&mature=true&album_previews=true`,
+      `https://api.imgur.com/3/gallery/hot/viral/${pagenum}/month?showViral=true&mature=true&album_previews=true`,
       {
         method: "GET",
         headers: {
@@ -27,7 +29,7 @@ async function Filters() {
       }
     );
     let data = await res.json();
-    console.log("data:", data.data);
+    // console.log("data:", data.data);
     list(data.data);
   } catch (err) {}
 }
@@ -112,14 +114,22 @@ function list(tags) {
 
       text.append(title,titleline2);
       maindiv.append(imgdiv, text);
-
-      if (i % 4 === 0) {
+      if (i % 4 === 0) { 
+        
+        // console.log(1);
+        
         div1.append(maindiv);
       } else if (i % 4 === 1) {
+        // console.log(2);
+
         div2.append(maindiv);
       } else if (i % 4 === 2) {
+        // console.log(3);
+
         div3.append(maindiv);
       } else if (i % 4 === 3) {
+        // console.log(4);
+
         div4.append(maindiv);
       }
     }
@@ -181,3 +191,20 @@ function list(tags) {
     });
   }
 
+  window.addEventListener("scroll" ,()=>{
+      const { scrollTop , scrollHeight , clientHeight } = document.documentElement;
+       
+       if(scrollTop + clientHeight >= scrollHeight-5 ){
+         pagenum++;
+        //  console.log('pagenum:', pagenum)
+
+             showloading()
+          }
+       
+  })
+ 
+  function showloading(){
+     
+     setTimeout(Filters, 5000)
+     
+  }
