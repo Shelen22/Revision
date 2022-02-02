@@ -193,8 +193,8 @@ function list(tags) {
 
   window.addEventListener("scroll" ,()=>{
       const { scrollTop , scrollHeight , clientHeight } = document.documentElement;
-       
-       if(scrollTop + clientHeight >= scrollHeight-5 ){
+           console.log(scrollTop);
+       if(scrollTop + clientHeight >= scrollHeight- 3000){
          pagenum++;
         //  console.log('pagenum:', pagenum)
 
@@ -202,9 +202,9 @@ function list(tags) {
           }
        
   })
- 
+  const loading = document.querySelector('.loading');
   function showloading(){
-     
-     setTimeout(Filters, 5000)
+      // loading.classList.add('show')
+     setTimeout(Filters, 1000)
      
   }
